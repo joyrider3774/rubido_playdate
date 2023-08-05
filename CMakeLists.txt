@@ -25,21 +25,17 @@ set(CMAKE_CONFIGURATION_TYPES "Debug;Release")
 set(CMAKE_XCODE_GENERATE_SCHEME TRUE)
 
 # Game Name Customization
-set(PLAYDATE_GAME_NAME PuzzleLand)
-set(PLAYDATE_GAME_DEVICE PuzzleLand_DEVICE)
+set(PLAYDATE_GAME_NAME Rubido)
+set(PLAYDATE_GAME_DEVICE Rubido_DEVICE)
 
 project(${PLAYDATE_GAME_NAME} C ASM)
 
 file(GLOB SOURCES
 	"src/*.c"
-	"src/gameobjects/*.c"
-	"src/gamestates/*.c"
 )
 
 file(GLOB HEADERS
 	"src/*.h"
-	"src/gameobjects/*.h"
-	"src/gamestates/*.h"
 )
 
 if (TOOLCHAIN STREQUAL "armgcc")
