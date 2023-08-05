@@ -1,7 +1,7 @@
 #ifndef CPEG_H
 #define CPEG_H
 
-#include <SDL.h>
+#include <pd_api.h>
 #include <stdbool.h>
 #include "commonvars.h"
 #include "cboardparts.h"
@@ -13,7 +13,7 @@ typedef struct CPeg CPeg;
 struct CPeg
 {
  	int Type,X,Y,PlayFieldX,PlayFieldY,AnimPhase; //Animphase holds the current selected frame of the tile
- 	SDL_Surface * Image;
+ 	LCDBitmap * Image;
  	CBoardParts *ParentList; // the parentlist, points to a CBoardParts class
 };
 
@@ -27,7 +27,7 @@ int CPeg_GetAnimPhase(CPeg* Peg);
 void CPeg_SetAnimPhase(CPeg* Peg,int AnimPhaseIn);
 void CPeg_SetPosition(CPeg* Peg,const int PlayFieldXin,const int PlayFieldYin);
 bool CPeg_CanMoveTo(CPeg* Peg,const int PlayFieldXin,const int PlayFieldYin,bool erase);
-void CPeg_Draw(CPeg* Peg,SDL_Surface* Surface);
+void CPeg_Draw(CPeg* Peg);
 void CPeg_Destroy(CPeg* Peg);
 
 #endif

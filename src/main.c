@@ -1,6 +1,6 @@
 #include "main.h"
 #include "pd_api.h"
-#include "puzzleland.h"
+#include "rubido.h"
 #include "commonvars.h"
 
 #ifdef _WINDLL

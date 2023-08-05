@@ -8,30 +8,19 @@ int prev_music = -1, music_on = 0, sound_on = 0, force = 0;
 
 FilePlayer* musicPlayer;
 
-SamplePlayer* stageEndSoundPlayer;
-SamplePlayer* menuSoundPlayer;
-SamplePlayer* errorSoundPlayer;
-SamplePlayer* menuSelectSoundPlayer;
-SamplePlayer* flipBlockSoundPlayer;
-SamplePlayer* pickupBlockSoundPlayer;
-SamplePlayer* dropBlockSoundPlayer;
-SamplePlayer* rotateBlockSoundPlayer;
-SamplePlayer* bridgeSoundPlayer;
-SamplePlayer* elfSoundPlayer;
-SamplePlayer* textSoundPlayer;
+SamplePlayer* SelectSoundPlayer;
+SamplePlayer* GoodSoundPlayer;
+SamplePlayer* WrongSoundPlayer;
+SamplePlayer* StartSoundPlayer;
+SamplePlayer* WinnerSoundPlayer;
+SamplePlayer* LoserSoundPlayer;
 
-
-AudioSample* stageEndSound;
-AudioSample* errorSound;
-AudioSample* menuSound;
-AudioSample* menuSelectSound;
-AudioSample* flipBlockSound;
-AudioSample* pickupBlockSound;
-AudioSample* dropBlockSound;
-AudioSample* rotateBlockSound;
-AudioSample* bridgeSound;
-AudioSample* elfSound;
-AudioSample* textSound;
+AudioSample* SelectSound;
+AudioSample* GoodSound;
+AudioSample* WrongSound;
+AudioSample* StartSound;
+AudioSample* WinnerSound;
+AudioSample* LoserSound;
 
 void stopMusic(void)
 {
@@ -115,45 +104,30 @@ void FreeSoundPlayer(SamplePlayer* SoundPlayer)
 
 void initSound(void)
 {
-    stageEndSoundPlayer = loadSoundFile(stageEndSound, "sounds/stageend");
-    errorSoundPlayer = loadSoundFile(errorSound, "sounds/error");
-    menuSelectSoundPlayer = loadSoundFile(menuSelectSound, "sounds/select");
-    menuSoundPlayer = loadSoundFile(menuSound, "sounds/menu");
-    flipBlockSoundPlayer = loadSoundFile(flipBlockSound, "sounds/rotate");
-    pickupBlockSoundPlayer = loadSoundFile(pickupBlockSound, "sounds/pickup");
-    dropBlockSoundPlayer = loadSoundFile(dropBlockSound, "sounds/drop");
-    rotateBlockSoundPlayer = loadSoundFile(rotateBlockSound, "sounds/rotate");
-    bridgeSoundPlayer = loadSoundFile(bridgeSound, "sounds/bridge");
-    elfSoundPlayer = loadSoundFile(elfSound, "sounds/elf");
-    textSoundPlayer = loadSoundFile(textSound, "sounds/text");
+    SelectSoundPlayer = loadSoundFile(SelectSound, "sounds/select");
+    GoodSoundPlayer = loadSoundFile(GoodSound, "sounds/good");
+    WrongSoundPlayer = loadSoundFile(WrongSound, "sounds/wrong");
+    StartSoundPlayer = loadSoundFile(StartSound, "sounds/start");
+    WinnerSoundPlayer = loadSoundFile(WinnerSound, "sounds/winner");
+    LoserSoundPlayer = loadSoundFile(LoserSound, "sounds/loser");
 }
 
 void deInitSound(void)
 {
-    FreeSample(stageEndSound);
-    FreeSample(errorSound);
-    FreeSample(menuSelectSound);
-    FreeSample(menuSound);
-    FreeSample(pickupBlockSound);
-    FreeSample(dropBlockSound);
-    FreeSample(rotateBlockSound);
-    FreeSample(bridgeSound);
-    FreeSample(elfSound);
-    FreeSample(flipBlockSound);
-    FreeSample(textSound);
+    FreeSample(SelectSound);
+    FreeSample(GoodSound);
+    FreeSample(WrongSound);
+    FreeSample(StartSound);
+    FreeSample(WinnerSound);
+    FreeSample(LoserSound);
 
 
-    FreeSoundPlayer(stageEndSoundPlayer);
-    FreeSoundPlayer(errorSoundPlayer);
-    FreeSoundPlayer(menuSelectSoundPlayer);
-    FreeSoundPlayer(menuSoundPlayer);
-    FreeSoundPlayer(pickupBlockSoundPlayer);
-    FreeSoundPlayer(dropBlockSoundPlayer);
-    FreeSoundPlayer(rotateBlockSoundPlayer);
-    FreeSoundPlayer(bridgeSoundPlayer);
-    FreeSoundPlayer(elfSoundPlayer);
-    FreeSoundPlayer(flipBlockSoundPlayer);
-    FreeSoundPlayer(textSoundPlayer);
+    FreeSoundPlayer(SelectSoundPlayer);
+    FreeSoundPlayer(GoodSoundPlayer);
+    FreeSoundPlayer(WrongSoundPlayer);
+    FreeSoundPlayer(StartSoundPlayer);
+    FreeSoundPlayer(WinnerSoundPlayer);
+    FreeSoundPlayer(LoserSoundPlayer);
 }
 
 void playMusicFile(const char* path, int repeat)
@@ -178,19 +152,7 @@ void SelectMusic(int musicFile)
         switch (musicFile) 
         {
             case musTitle:
-                playMusicFile("music/title", 0);
-                break;
-            case musGame1:
-                playMusicFile("music/game1", 0);
-                break;
-            case musGame2:
-                playMusicFile("music/game2", 0);
-                break;
-            case musOldman:
-                playMusicFile("music/oldman", 0);
-                break;
-            case musStage:
-                playMusicFile("music/stage", 0);
+                playMusicFile("music/rubido", 0);
                 break;
         }
     }
@@ -247,62 +209,33 @@ void playSound(SamplePlayer* soundPlayer, int repeats)
     pd->sound->sampleplayer->play(soundPlayer, repeats, 1.0f);   
 }
 
-void stopTextSound(void)
+
+void playSelectSound(void)
 {
-    stopSound(textSoundPlayer);
+    playSound(SelectSoundPlayer, 1);
 }
 
-void playTextSound(void)
+void playGoodSound(void)
 {
-    playSound(textSoundPlayer, 0);
+    playSound(GoodSoundPlayer, 1);
 }
 
-void playRotateBlockSound(void)
+void playWrongSound(void)
 {
-    playSound(rotateBlockSoundPlayer, 1);
+    playSound(WrongSoundPlayer, 1);
 }
 
-void playElfSound(void)
+void playStartSound(void)
 {
-    playSound(elfSoundPlayer, 1);
+    playSound(StartSoundPlayer, 1);
 }
 
-void playStageEndSound(void)
+void playWinnerSound(void)
 {
-    playSound(stageEndSoundPlayer, 1);
+    playSound(WinnerSoundPlayer, 1);
 }
 
-void playBridgeSound(void)
+void playLoserSound(void)
 {
-    playSound(bridgeSoundPlayer, 1);
-}
-
-void playErrorSound(void)
-{
-    playSound(errorSoundPlayer, 1);
-}
-
-void playMenuSelectSound(void)
-{
-    playSound(menuSelectSoundPlayer, 1);
-}
-
-void playFlipBlockSound(void)
-{
-    playSound(flipBlockSoundPlayer, 1);
-}
-
-void playPickupBlockSound(void)
-{
-    playSound(pickupBlockSoundPlayer, 1);
-}
-
-void playDropBlockSound(void)
-{
-    playSound(dropBlockSoundPlayer, 1);
-}
-
-void playMenuSound(void)
-{
-    playSound(menuSoundPlayer, 1);
+    playSound(LoserSoundPlayer, 1);
 }

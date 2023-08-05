@@ -2,7 +2,6 @@
 #define CSELECTOR_H
 
 #include "commonvars.h"
-#include "SDL_gfxPrimitives.h"
 
 // A struct that holds x & y coordinate
 typedef struct SPoint SPoint;
@@ -30,6 +29,6 @@ SPoint CSelector_GetSelection(CSelector* CSelector);
 SPoint CSelector_GetPosition(CSelector* CSelector);
 void CSelector_DeSelect(CSelector* CSelector);
 // Draw the blue box on the current position, with the offsets in mind
-void CSelector_Draw(CSelector* CSelector,SDL_Surface *Surface);
-void CSelector_Destroy();
+void CSelector_Draw(CSelector* CSelector);
+void CSelector_Destroy(CSelector* CSelector);
 #endif

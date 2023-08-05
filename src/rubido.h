@@ -1,5 +1,5 @@
-#ifndef PUZZLELAND_H
-#define PUZZLELAND_H
+#ifndef RUBIDO_H
+#define RUBIDO_H
 
 int mainLoop(void* ud);
 void setupGame(void);

@@ -1,10 +1,10 @@
-#include <SDL.h>
+#include <pd_api.h>
 #include "cselector.h"
 #include "commonvars.h"
 
 CSelector* CSelector_Create(const int PlayFieldXin,const int PlayFieldYin)
 {
-	CSelector* Result = (CSelector*) malloc(sizeof(CSelector));
+	CSelector* Result = pd->system->realloc(NULL, sizeof(CSelector));
 	Result->SelectedPoint.X = 0; // there's no selection set it 0
 	Result->SelectedPoint.Y = 0;
 	Result->CurrentPoint.X = PlayFieldXin; // set current position
@@ -48,16 +48,16 @@ void CSelector_DeSelect(CSelector *Selector)
 }
 
 
-void CSelector_Draw(CSelector *Selector,SDL_Surface *Surface)
+void CSelector_Draw(CSelector *Selector)
 {
-	rectangleRGBA(Surface, XOffSet + Selector->CurrentPoint.X * (TileWidth), YOffSet+ Selector->CurrentPoint.Y * (TileHeight), XOffSet-1 + (Selector->CurrentPoint.X +1)* (TileWidth ), YOffSet-1+ (Selector->CurrentPoint.Y+1) * (TileHeight), 0,0, 0, 255);
-	rectangleRGBA(Surface, XOffSet + 1 + Selector->CurrentPoint.X * (TileWidth), YOffSet + 1 + Selector->CurrentPoint.Y * (TileHeight), XOffSet-2 + (Selector->CurrentPoint.X +1)* (TileWidth ), YOffSet-2+ (Selector->CurrentPoint.Y+1) * (TileHeight), 255,255, 255, 255);
-	rectangleRGBA(Surface, XOffSet + 2 + Selector->CurrentPoint.X * (TileWidth), YOffSet + 2 + Selector->CurrentPoint.Y * (TileHeight), XOffSet-3 + (Selector->CurrentPoint.X +1)* (TileWidth ), YOffSet-3+ (Selector->CurrentPoint.Y+1) * (TileHeight), 255,255,255, 255);
-	rectangleRGBA(Surface, XOffSet + 3 + Selector->CurrentPoint.X * (TileWidth), YOffSet + 3 + Selector->CurrentPoint.Y * (TileHeight), XOffSet-4 + (Selector->CurrentPoint.X +1)* (TileWidth ), YOffSet-4+ (Selector->CurrentPoint.Y+1) * (TileHeight), 0,0, 0, 255);
+	pd->graphics->drawRect(XOffSet + Selector->CurrentPoint.X * (TileWidth), YOffSet+ Selector->CurrentPoint.Y * (TileHeight), TileWidth, TileHeight, kColorBlack);
+	pd->graphics->drawRect(XOffSet + 1 + Selector->CurrentPoint.X * (TileWidth), YOffSet + 1 + Selector->CurrentPoint.Y * (TileHeight), (TileWidth-2), (TileHeight-2), kColorWhite);
+	pd->graphics->drawRect(XOffSet + 2 + Selector->CurrentPoint.X * (TileWidth), YOffSet + 2 + Selector->CurrentPoint.Y * (TileHeight), (TileWidth-4), (TileHeight-4), kColorWhite);
+	pd->graphics->drawRect(XOffSet + 3 + Selector->CurrentPoint.X * (TileWidth), YOffSet + 3 + Selector->CurrentPoint.Y * (TileHeight), (TileWidth-6), (TileHeight-6), kColorBlack);
 }
 
 void CSelector_Destroy(CSelector *Selector)
 {
-	free(Selector);
+	pd->system->realloc(Selector, 0);
 	Selector = NULL;
 }

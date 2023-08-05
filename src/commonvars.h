@@ -1,9 +1,7 @@
 #ifndef COMMONVARS_H
 #define COMMONVARS_H
 
-#include <SDL.h>
-#include <SDL_Mixer.h>
-#include <SDL_ttf.h>
+#include <pd_api.h>
 #include <stdbool.h>
 #include "cselector.h"
 #include "cmainmenu.h"
@@ -12,6 +10,8 @@ typedef struct CBoardParts CBoardParts;
 typedef struct CPeg CPeg;
 typedef struct SPoint SPoint;
 typedef struct CSelector CSelector;
+
+#define FRAMERATE 15
 
 // The diffrent difficultys
 #define VeryEasy 0
@@ -45,24 +45,15 @@ typedef struct CSelector CSelector;
 #define IDPeg 1
 #define XOffSet 10
 #define YOffSet 11
-#define NrOfSounds 6
-#define SND_SELECT 0
-#define SND_GOOD 1
-#define SND_WRONG 2
-#define SND_START 3
-#define SND_WINNER 4
-#define SND_LOSER 5
 
-extern SDL_Surface *IMGCredits,*IMGPeg,*IMGBackground,*IMGVeryEasy1,*IMGEasy1,*IMGHard1,*IMGVeryHard1,*IMGEasyInfo,*IMGVeryEasyInfo,*IMGHardInfo,*IMGVeryHardInfo;
+
+extern LCDBitmap *IMGCredits,*IMGPeg,*IMGBackground,*IMGVeryEasy1,*IMGEasy1,*IMGHard1,*IMGVeryHard1,*IMGEasyInfo,*IMGVeryEasyInfo,*IMGHardInfo,*IMGVeryHardInfo;
 extern int Difficulty;
-extern Mix_Chunk *Sounds[NrOfSounds]; // array that will hold the sounds
 
 extern CBoardParts *BoardParts; // boardparts instance that will hold all the boardparts
 extern int GameState; // the game state
-extern TTF_Font *font;
-extern bool GlobalSoundEnabled; // used to see if the sound was opened succesfully
-extern Mix_Music *Music; // the music
-extern SDL_Surface *Screen; // the screen and buffer surface, buffer is used since hardware drawing will be used
+extern LCDFont *Ash;
+extern LCDBitmap *Screen; // the screen and buffer surface, buffer is used since hardware drawing will be used
 extern int Moves,Volume;
 extern int BestPegsLeft[4]; // array that holds the best amount of pegs left for each difficulty
 
@@ -72,5 +63,16 @@ extern bool PrintFormShown;
 
 //titlescreen
 extern CMainMenu* Menu;
+
+//main
+extern PDButtons prevButtons, currButtons;
+extern int showFps;
+extern unsigned int prevLogTime;
+extern unsigned int FrameTime, Frames;
+extern float CurrentMs;
+extern bool BatteryMonitoring;
+extern PlaydateAPI* pd;
+
+void setPDPtr(PlaydateAPI* p);
 
 #endif

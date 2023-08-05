@@ -2,10 +2,11 @@
 #include "cpeg.h"
 #include "cboardparts.h"
 #include "commonvars.h"
+#include "pd_helperfuncs.h"
 
 CPeg* CPeg_Create(const int PlayFieldXin,const int PlayFieldYin)
 {
-	CPeg* Result = (CPeg*) malloc(sizeof(CPeg));
+	CPeg* Result = pd->system->realloc(NULL, sizeof(CPeg));
 	Result->Type = IDPeg; // Id, isn't actually used in the game but if u have diffrent boardparts, u can identify it by this
     Result->Image = IMGPeg; // set the image
     Result->AnimPhase = 0; // current frame = 0 (a red dot)
@@ -127,27 +128,16 @@ bool CPeg_CanMoveTo(CPeg* Peg, const int PlayFieldXin,const int PlayFieldYin,boo
 		return false;
 }
 
-void CPeg_Draw(CPeg* Peg, SDL_Surface* Surface) // drawing
+void CPeg_Draw(CPeg* Peg) // drawing
 {
-	//printf("Start draw type:%d\n",Type);
 	if (Peg->Image)
 	{
-
-		SDL_Rect SrcRect,DstRect;
-		SrcRect.x = Peg->AnimPhase * TileWidth; // current frame * tilewidth is
-		SrcRect.y = 0;
-		SrcRect.w = TileWidth;
-		SrcRect.h = TileHeight;
-		DstRect.x = Peg->X;
-		DstRect.y = Peg->Y;
-		DstRect.w = TileWidth;
-		DstRect.h = TileHeight;
-		SDL_BlitSurface(Peg->Image,&SrcRect,Surface,&DstRect); // blit it to the specified surface
+		DrawBitmapSrcRec(Peg->Image,Peg->X, Peg->Y, Peg->AnimPhase * TileWidth, 0, TileWidth, TileHeight, kBitmapUnflipped); // blit it to the specified surface
 	}
 }
 
 void CPeg_Destroy(CPeg* Peg)
 {
-	free(Peg);
+	pd->system->realloc(Peg, 0);
 	Peg = NULL;
 }
