@@ -1,0 +1,7 @@
+name=Rubido
+author=Willems Davy aka Joyrider3774
+description=A Chinese checkers / Solitair game
+bundleID=com.joyrider3774.rubido
+version=1.0
+imagePath=metadata
+buildNumber=1
