@@ -48,17 +48,14 @@ typedef struct CSelector CSelector;
 
 
 extern LCDBitmap *IMGCredits,*IMGPeg,*IMGBackground,*IMGVeryEasy1,*IMGEasy1,*IMGHard1,*IMGVeryHard1,*IMGEasyInfo,*IMGVeryEasyInfo,*IMGHardInfo,*IMGVeryHardInfo;
-extern int Difficulty;
-
-extern CBoardParts *BoardParts; // boardparts instance that will hold all the boardparts
-extern int GameState; // the game state
-extern LCDFont *Ash;
-extern int Moves;
-extern int BestPegsLeft[4]; // array that holds the best amount of pegs left for each difficulty
 
 //game
 extern CSelector *GameSelector;
 extern bool PrintFormShown;
+extern int Moves;
+extern int BestPegsLeft[4]; // array that holds the best amount of pegs left for each difficulty
+extern int Difficulty;
+extern CBoardParts* BoardParts; // boardparts instance that will hold all the boardparts
 
 //titlescreen
 extern CMainMenu* Menu;
@@ -72,7 +69,8 @@ extern float CurrentMs;
 extern bool BatteryMonitoring;
 extern PlaydateAPI* pd;
 extern PDMenuItem* menuItem1, *menuItem2, *menuItem3;
-
+extern int GameState; // the game state
+extern LCDFont* Ash;
 
 void setPDPtr(PlaydateAPI* p);
 
