@@ -1,0 +1,6 @@
+winner.wav - Game Music Stingers and UI SFX Pack 2 - WOW Sound - https://www.gamedevmarket.net/asset/game-music-stingers-and-ui-sfx-pack-2/ 
+loser.wav - Bad 05 - Retro Fantasy Music Pack - Joel Steudler - https://joelsteudler.itch.io/retro-fantasy-music-pack-vol-1
+start.wav - bell_large_ringing_01 Pro Sound Collection v1.3 16bit - Gamemaster Audio - https://www.gamedevmarket.net/asset/pro-sound-collection/
+good.wav - unknown (been using this since the 90's)
+select.wav - unknown (been using this since the 90's)
+wrong.wav - unknown (been using this the 90's)
