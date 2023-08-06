@@ -66,17 +66,17 @@ void LoadFonts(void)
 
 void LoadGraphics()
 {
-	IMGBackground = loadImageAtPath("./graphics/background");
-	IMGPeg = loadImageAtPath("./graphics/peg");
-	IMGVeryEasyInfo = loadImageAtPath("./graphics/infoveryeasy.png");
-	IMGEasyInfo = loadImageAtPath("./graphics/infoeasy.png");
-	IMGHardInfo = loadImageAtPath("./graphics/infohard.png");
-	IMGVeryHardInfo = loadImageAtPath("./graphics/infoveryhard.png");
-	IMGVeryEasy1 = loadImageAtPath("./graphics/veryeasy1.png");
-	IMGEasy1 = loadImageAtPath("./graphics/easy1.png");
-	IMGHard1 = loadImageAtPath("./graphics/hard1.png");
-	IMGVeryHard1 = loadImageAtPath("./graphics/veryhard1.png");
-	IMGCredits = loadImageAtPath("./graphics/credits.png");
+	IMGBackground = loadImageAtPath("graphics/background");
+	IMGPeg = loadImageAtPath("graphics/peg");
+	IMGVeryEasyInfo = loadImageAtPath("graphics/infoveryeasy");
+	IMGEasyInfo = loadImageAtPath("graphics/infoeasy");
+	IMGHardInfo = loadImageAtPath("graphics/infohard");
+	IMGVeryHardInfo = loadImageAtPath("graphics/infoveryhard");
+	IMGVeryEasy1 = loadImageAtPath("graphics/veryeasy1");
+	IMGEasy1 = loadImageAtPath("graphics/easy1");
+	IMGHard1 = loadImageAtPath("graphics/hard1");
+	IMGVeryHard1 = loadImageAtPath("graphics/veryhard1");
+	IMGCredits = loadImageAtPath("graphics/credits");
 }
 
 void UnLoadGraphics()

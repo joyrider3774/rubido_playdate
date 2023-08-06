@@ -9,11 +9,11 @@ CMainMenu* CMainMenu_Create()
 	CMainMenu* Result = pd->system->realloc(NULL, sizeof(CMainMenu));
     Result->Selection = 1;
 
-    Result->IMGTitle = loadImageAtPath("./graphics/titlescreen.png");
-    Result->IMGNewGame1 = loadImageAtPath("./graphics/newgame1.png");
-    Result->IMGNewGame2 = loadImageAtPath("./graphics/newgame2.png");
-    Result->IMGCredits1 = loadImageAtPath("./graphics/credits1.png");
-    Result->IMGCredits2 = loadImageAtPath("./graphics/credits2.png");
+    Result->IMGTitle = loadImageAtPath("graphics/titlescreen");
+    Result->IMGNewGame1 = loadImageAtPath("graphics/newgame1");
+    Result->IMGNewGame2 = loadImageAtPath("graphics/newgame2");
+    Result->IMGCredits1 = loadImageAtPath("graphics/credits1");
+    Result->IMGCredits2 = loadImageAtPath("graphics/credits2");
 
 	return Result;
 }
