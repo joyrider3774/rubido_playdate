@@ -62,5 +62,5 @@ The game uses some assets from assets packs i had bought, which you can not reus
 - loser.wav - Bad 05 - Retro Fantasy Music Pack - Joel Steudler - https://joelsteudler.itch.io/retro-fantasy-music-pack-vol-1
 - start.wav - bell_large_ringing_01 Pro Sound Collection v1.3 16bit - Gamemaster Audio - https://www.gamedevmarket.net/asset/pro-sound-collection/
 
-It is unknown who created the music and the other sound effects. The game is a port from the gp2x game i made more than a decade ago and i did not keep track of who created these other assets at the time. If you happen to recnogize any please let me know!
+It is unknown who created the music and the other sound effects. The game is a port from the gp2x game i made more than a decade ago and i did not keep track of who created these other assets at the time. If you happen to recognize any please let me know!
 
