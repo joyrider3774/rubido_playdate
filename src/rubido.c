@@ -10,6 +10,54 @@
 #include "cselector.h"
 #include "commonvars.h"
 
+// Load the settings, if there isn't a settings file, set some initial values
+void LoadSettings()
+{
+	SDFile* SettingsFile;
+	SettingsFile = pd->file->open("settings.dat", kFileReadData);
+	if (SettingsFile)
+	{
+		pd->file->read(SettingsFile, &BestPegsLeft[VeryEasy], sizeof(int));
+		pd->file->read(SettingsFile, &BestPegsLeft[Easy], sizeof(int));
+		pd->file->read(SettingsFile, &BestPegsLeft[Hard], sizeof(int));
+		pd->file->read(SettingsFile, &BestPegsLeft[VeryHard], sizeof(int));
+		int tmp;
+		pd->file->read(SettingsFile, &tmp, sizeof(int));
+		setSoundOn(tmp);
+		pd->file->read(SettingsFile, &tmp, sizeof(int));
+		setMusicOn(tmp);
+		pd->file->close(SettingsFile);
+	}
+	else
+	{
+		BestPegsLeft[VeryEasy] = 0;
+		BestPegsLeft[Easy] = 0;
+		BestPegsLeft[Hard] = 0;
+		BestPegsLeft[VeryHard] = 0;
+		setSoundOn(true);
+		setMusicOn(true);
+	}
+}
+
+// Save the settings
+void SaveSettings()
+{
+	SDFile* SettingsFile;
+	SettingsFile = pd->file->open("settings.dat", kFileWrite);
+	if (SettingsFile)
+	{
+		pd->file->write(SettingsFile, &BestPegsLeft[VeryEasy], sizeof(int));
+		pd->file->write(SettingsFile, &BestPegsLeft[Easy], sizeof(int));
+		pd->file->write(SettingsFile, &BestPegsLeft[Hard], sizeof(int));
+		pd->file->write(SettingsFile, &BestPegsLeft[VeryHard], sizeof(int));
+		int tmp = isSoundOn();
+		pd->file->write(SettingsFile, &tmp, sizeof(int));
+		tmp = isMusicOn();
+		pd->file->write(SettingsFile, &tmp, sizeof(int));
+		pd->file->close(SettingsFile);
+	}
+}
+
 
 void LoadFonts(void)
 {
@@ -98,10 +146,7 @@ void setupGame()
 	initMusic();
 	LoadFonts();
 	LoadGraphics();
-	//setMusicOn(isMusicOnSaveState());
-	//setSoundOn(isSoundOnSaveState());
-	setMusicOn(true);
-	setSoundOn(true);
+	LoadSettings();
 	pd->graphics->setFont(Ash);
 	BoardParts = CBoardParts_Create();
 	Menu = CMainMenu_Create();
@@ -119,11 +164,13 @@ void MenuItemCallback(void* userdata)
 	if (userdata == &menuItem2)
 	{
 		setMusicOn(!isMusicOn());
+		SaveSettings();
 	}
 
 	if (userdata == &menuItem3)
 	{
 		setSoundOn(!isSoundOn());
+		SaveSettings();
 	}
 }
 
@@ -395,6 +442,7 @@ void Game()
 						}
 						else
 							BestPegsLeft[Difficulty] = PegsLeft();
+						SaveSettings();
 						// if it's the winning game play the winning sound and show the form with the winning message
 						if (IsWinningGame())
 						{
@@ -550,44 +598,6 @@ void DifficultySelect()
 			break;
 
 	}
-}
-
-// Load the settings, if there isn't a settings file, set some initial values
-void LoadSettings()
-{
- 	//FILE *SettingsFile;
- 	//SettingsFile = fopen("./settings.dat","r");
- 	//if(SettingsFile)
- 	//{
-		//fscanf(SettingsFile,"Best0=%d\n",&BestPegsLeft[VeryEasy]);
-		//fscanf(SettingsFile,"Best1=%d\n",&BestPegsLeft[Easy]);
-		//fscanf(SettingsFile,"Best2=%d\n",&BestPegsLeft[Hard]);
-		//fscanf(SettingsFile,"Best3=%d\n",&BestPegsLeft[VeryHard]);
-		//fclose(SettingsFile);
- 	//}
- 	//else
- 	{
-		BestPegsLeft[VeryEasy] = 0;
-		BestPegsLeft[Easy] = 0;
-		BestPegsLeft[Hard] = 0;
-		BestPegsLeft[VeryHard] = 0;
-	}
-}
-
-// Save the settings
-void SaveSettings()
-{
- 	//FILE *SettingsFile;
- 	//SettingsFile = fopen("./settings.dat","w");
- 	//if(SettingsFile)
- 	//{
-		//fprintf(SettingsFile,"Volume=%d\n",Volume);
-		//fprintf(SettingsFile,"Best0=%d\n",BestPegsLeft[VeryEasy]);
-		//fprintf(SettingsFile,"Best1=%d\n",BestPegsLeft[Easy]);
-		//fprintf(SettingsFile,"Best2=%d\n",BestPegsLeft[Hard]);
-		//fprintf(SettingsFile,"Best3=%d\n",BestPegsLeft[VeryHard]);
-		//fclose(SettingsFile);
- 	//}
 }
 
 void CreditsInit()
