@@ -109,6 +109,46 @@ void setupGame()
 	pd->graphics->setBackgroundColor(kColorWhite);
 }
 
+void MenuItemCallback(void* userdata)
+{
+	if (userdata == &menuItem1)
+	{
+		GameState = GSTitleScreenInit;
+	}
+}
+
+void DestroyMenuItems()
+{
+	if (menuItem1)
+	{
+		pd->system->removeMenuItem(menuItem1);
+		menuItem1 = NULL;
+	}
+
+	if (menuItem2)
+	{
+		pd->system->removeMenuItem(menuItem2);
+		menuItem2 = NULL;
+	}
+
+	if (menuItem3)
+	{
+		pd->system->removeMenuItem(menuItem3);
+		menuItem3 = NULL;
+	}
+}
+
+void CreateGameMenuItems()
+{
+	DestroyMenuItems();
+	//TitleScreen
+	if (menuItem1 == NULL)
+	{
+		menuItem1 = pd->system->addMenuItem("Title Screen", MenuItemCallback, &menuItem1);
+	}
+}
+
+
 // procedure that calculates how many moves are possible in the current board state
 // we can simply do this by checking all parts and see if they can move to all directions
 // the canmoveto method in CPegs is does all the checking
@@ -218,6 +258,8 @@ void GameInit()
 	InitBoard();
     Moves = 0;
 	playStartSound();
+	CreateGameMenuItems();
+	PrintFormShown = false;
 }
 
 // The main Game Loop
@@ -356,9 +398,8 @@ void Game()
 
 void TitleScreenInit()
 {
-	
-	// if a music hasn't started start the music in an endless loop (-1 as last parameter)
 	pd->graphics->setBackgroundColor(kColorWhite);
+	DestroyMenuItems();
 	SelectMusic(musTitle);
 }
 
@@ -392,7 +433,7 @@ void TitleScreen()
 
 void DifficultySelectInit()
 {
-
+	CreateGameMenuItems();
 }
 
 // Main difficulty select loop
@@ -515,9 +556,20 @@ void SaveSettings()
  	//}
 }
 
+void CreditsInit()
+{
+	CreateGameMenuItems();
+}
+
 //Main Credits loop, will just show an image and wait for a button to be pressed
 void Credits()
 {
+	if (GameState == GSCreditsInit)
+	{
+		CreditsInit();
+		GameState -= GSInitDiff;
+	}
+
 	if (((currButtons & kButtonA) && ! (prevButtons & kButtonA)) || 
 		((currButtons & kButtonB) && ! (prevButtons & kButtonB)))
 			GameState = GSTitleScreenInit;

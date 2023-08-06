@@ -72,6 +72,8 @@ extern unsigned int FrameTime, Frames;
 extern float CurrentMs;
 extern bool BatteryMonitoring;
 extern PlaydateAPI* pd;
+extern PDMenuItem* menuItem1, *menuItem2, *menuItem3;
+
 
 void setPDPtr(PlaydateAPI* p);
 

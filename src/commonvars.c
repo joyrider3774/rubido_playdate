@@ -30,6 +30,7 @@ unsigned int FrameTime, Frames;
 float CurrentMs;
 bool BatteryMonitoring;
 PlaydateAPI* pd;
+PDMenuItem* menuItem1, *menuItem2, *menuItem3;
 
 void setPDPtr(PlaydateAPI* p) {
 	pd = p;
