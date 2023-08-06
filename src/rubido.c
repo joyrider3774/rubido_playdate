@@ -106,6 +106,7 @@ void setupGame()
 	BoardParts = CBoardParts_Create();
 	Menu = CMainMenu_Create();
 	GameSelector = CSelector_Create(4,4);
+	pd->graphics->setBackgroundColor(kColorWhite);
 }
 
 // procedure that calculates how many moves are possible in the current board state
@@ -212,6 +213,7 @@ bool IsWinningGame()
 
 void GameInit()
 {
+	pd->graphics->setBackgroundColor(kColorBlack);
 	CSelector_SetPosition(GameSelector, 4, 4);
 	InitBoard();
     Moves = 0;
@@ -225,7 +227,7 @@ void Game()
 	{
 		GameInit();
 		GameState -= GSInitDiff;
-	}   
+	}
     pd->graphics->drawBitmap(IMGBackground,0,0, kBitmapUnflipped);
 	char* Msg;
 	// Write some info to the screen
