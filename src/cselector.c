@@ -50,7 +50,8 @@ void CSelector_DeSelect(CSelector *Selector)
 
 void CSelector_Draw(CSelector *Selector)
 {
-	pd->graphics->drawRect(XOffSet + Selector->CurrentPoint.X * (TileWidth), YOffSet+ Selector->CurrentPoint.Y * (TileHeight), TileWidth, TileHeight, kColorBlack);
+	pd->graphics->drawRect(XOffSet - 1 + Selector->CurrentPoint.X * (TileWidth), YOffSet - 1 + Selector->CurrentPoint.Y * (TileHeight), (TileWidth + 2), (TileHeight + 2), kColorBlack);
+	pd->graphics->drawRect(XOffSet + Selector->CurrentPoint.X * (TileWidth), YOffSet+ Selector->CurrentPoint.Y * (TileHeight), TileWidth, TileHeight, kColorWhite);
 	pd->graphics->drawRect(XOffSet + 1 + Selector->CurrentPoint.X * (TileWidth), YOffSet + 1 + Selector->CurrentPoint.Y * (TileHeight), (TileWidth-2), (TileHeight-2), kColorWhite);
 	pd->graphics->drawRect(XOffSet + 2 + Selector->CurrentPoint.X * (TileWidth), YOffSet + 2 + Selector->CurrentPoint.Y * (TileHeight), (TileWidth-4), (TileHeight-4), kColorWhite);
 	pd->graphics->drawRect(XOffSet + 3 + Selector->CurrentPoint.X * (TileWidth), YOffSet + 3 + Selector->CurrentPoint.Y * (TileHeight), (TileWidth-6), (TileHeight-6), kColorBlack);
