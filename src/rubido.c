@@ -223,31 +223,31 @@ void GameInit()
 // The main Game Loop
 void Game()
 {
-	if( GameState == GSGameInit)
+	if (GameState == GSGameInit)
 	{
 		GameInit();
 		GameState -= GSInitDiff;
 	}
-    pd->graphics->drawBitmap(IMGBackground,0,0, kBitmapUnflipped);
+	pd->graphics->drawBitmap(IMGBackground, 0, 0, kBitmapUnflipped);
 	char* Msg;
 	// Write some info to the screen
-	pd->system->formatString(&Msg,"Moves Left:%d",MovesLeft());
-	pd->graphics->drawText(Msg,strlen(Msg),kASCIIEncoding,242,37);
+	pd->system->formatString(&Msg, "Moves Left:%d", MovesLeft());
+	pd->graphics->drawText(Msg, strlen(Msg), kASCIIEncoding, 242, 37);
 	pd->system->realloc(Msg, 0);
 
-	pd->system->formatString(&Msg,"Moves:%d",Moves);
+	pd->system->formatString(&Msg, "Moves:%d", Moves);
 	pd->graphics->drawText(Msg, strlen(Msg), kASCIIEncoding, 242, 53);
 	pd->system->realloc(Msg, 0);
 
-	pd->system->formatString(&Msg,"Pegs Left:%d",PegsLeft());
+	pd->system->formatString(&Msg, "Pegs Left:%d", PegsLeft());
 	pd->graphics->drawText(Msg, strlen(Msg), kASCIIEncoding, 242, 69);
 	pd->system->realloc(Msg, 0);
 
 	// Only show best pegs if it isn't 0
 	if (BestPegsLeft[Difficulty] != 0)
 	{
-		pd->system->formatString(&Msg,"Best Pegs:%d",BestPegsLeft[Difficulty]);
-		pd->graphics->drawText(Msg,strlen(Msg), kASCIIEncoding, 242,85);
+		pd->system->formatString(&Msg, "Best Pegs:%d", BestPegsLeft[Difficulty]);
+		pd->graphics->drawText(Msg, strlen(Msg), kASCIIEncoding, 242, 85);
 	}
 	CBoardParts_Draw(BoardParts);
 	CSelector_Draw(GameSelector);
@@ -268,31 +268,32 @@ void Game()
 
 	if ((currButtons & kButtonLeft) && !(prevButtons & kButtonLeft))
 		if (!PrintFormShown)
-			CSelector_SetPosition(GameSelector, CSelector_GetPosition(GameSelector).X -1,CSelector_GetPosition(GameSelector).Y);
-	
+			CSelector_SetPosition(GameSelector, CSelector_GetPosition(GameSelector).X - 1, CSelector_GetPosition(GameSelector).Y);
+
 	if ((currButtons & kButtonRight) && !(prevButtons & kButtonRight))
 		if (!PrintFormShown)
-			CSelector_SetPosition(GameSelector, CSelector_GetPosition(GameSelector).X +1,CSelector_GetPosition(GameSelector).Y);
-	
+			CSelector_SetPosition(GameSelector, CSelector_GetPosition(GameSelector).X + 1, CSelector_GetPosition(GameSelector).Y);
+
 	if ((currButtons & kButtonUp) && !(prevButtons & kButtonUp))
 		if (!PrintFormShown)
-			CSelector_SetPosition(GameSelector, CSelector_GetPosition(GameSelector).X,CSelector_GetPosition(GameSelector).Y-1);
-	
+			CSelector_SetPosition(GameSelector, CSelector_GetPosition(GameSelector).X, CSelector_GetPosition(GameSelector).Y - 1);
+
 	if ((currButtons & kButtonDown) && !(prevButtons & kButtonDown))
 		if (!PrintFormShown)
-			CSelector_SetPosition(GameSelector, CSelector_GetPosition(GameSelector).X,CSelector_GetPosition(GameSelector).Y+1);
-	
+			CSelector_SetPosition(GameSelector, CSelector_GetPosition(GameSelector).X, CSelector_GetPosition(GameSelector).Y + 1);
+
 	if ((currButtons & kButtonB) && !(prevButtons & kButtonB))
 		if (!PrintFormShown && GameSelector->HasSelection)
 		{
-			CPeg_SetAnimPhase(CBoardParts_GetPart(BoardParts,CSelector_GetSelection(GameSelector).X,CSelector_GetSelection(GameSelector).Y),0);
+			CPeg_SetAnimPhase(CBoardParts_GetPart(BoardParts, CSelector_GetSelection(GameSelector).X, CSelector_GetSelection(GameSelector).Y), 0);
 			CSelector_DeSelect(GameSelector);
 		}
-	
+
 	if ((currButtons & kButtonA) && !(prevButtons & kButtonA))
-		if(PrintFormShown)
+	{
+		if (PrintFormShown)
 		{
-			GameState=GSTitleScreenInit;
+			GameState = GSTitleScreenInit;
 			// stop the music
 			stopMusic();
 			PrintFormShown = false;
@@ -302,13 +303,13 @@ void Game()
 			if (GameSelector->HasSelection) // if we have a selection
 			{
 				// see if the selected boardpart can move to the current position
-				if (CPeg_CanMoveTo(CBoardParts_GetPart(BoardParts,CSelector_GetSelection(GameSelector).X,CSelector_GetSelection(GameSelector).Y), CSelector_GetPosition(GameSelector).X,CSelector_GetPosition(GameSelector).Y,true))
+				if (CPeg_CanMoveTo(CBoardParts_GetPart(BoardParts, CSelector_GetSelection(GameSelector).X, CSelector_GetSelection(GameSelector).Y), CSelector_GetPosition(GameSelector).X, CSelector_GetPosition(GameSelector).Y, true))
 				{
 					playGoodSound();
 					//if so play a sound, increase the moves, set the selected part to empty and the current part to red
 					Moves++;
-					CPeg_SetAnimPhase(CBoardParts_GetPart(BoardParts,CSelector_GetSelection(GameSelector).X,CSelector_GetSelection(GameSelector).Y), 6);
-					CPeg_SetAnimPhase(CBoardParts_GetPart(BoardParts,CSelector_GetPosition(GameSelector).X,CSelector_GetPosition(GameSelector).Y), 0);
+					CPeg_SetAnimPhase(CBoardParts_GetPart(BoardParts, CSelector_GetSelection(GameSelector).X, CSelector_GetSelection(GameSelector).Y), 6);
+					CPeg_SetAnimPhase(CBoardParts_GetPart(BoardParts, CSelector_GetPosition(GameSelector).X, CSelector_GetPosition(GameSelector).Y), 0);
 					// if no moves are left see if the best pegs left value for the current difficulty is
 					// greater if so set te new value
 					if (MovesLeft() == 0)
@@ -324,34 +325,35 @@ void Game()
 						if (IsWinningGame())
 						{
 							playWinnerSound();
-							PrintFormShown = true;								
+							PrintFormShown = true;
 						}
 						else // show the loser messager, play loser sound
 						{
 							playLoserSound();
-							PrintFormShown = true;								
-						}								
+							PrintFormShown = true;
+						}
 					}
 
 				}
 				else // if we can't move to the spot, play the wrong move sound, and reset the selection to a red peg (instead of blue / selected)
 				{
-					CPeg_SetAnimPhase(CBoardParts_GetPart(BoardParts,CSelector_GetSelection(GameSelector).X,CSelector_GetSelection(GameSelector).Y),0);
+					CPeg_SetAnimPhase(CBoardParts_GetPart(BoardParts, CSelector_GetSelection(GameSelector).X, CSelector_GetSelection(GameSelector).Y), 0);
 					playWrongSound();
 				}
 				CSelector_DeSelect(GameSelector); // deselect the selection
 			}
 			else // we didn't have a selection, set the new selection
 			{
-				if (CPeg_GetAnimPhase(CBoardParts_GetPart(BoardParts,CSelector_GetPosition(GameSelector).X,CSelector_GetPosition(GameSelector).Y)) == 0)
+				if (CPeg_GetAnimPhase(CBoardParts_GetPart(BoardParts, CSelector_GetPosition(GameSelector).X, CSelector_GetPosition(GameSelector).Y)) == 0)
 				{
 					playSelectSound();
-					CPeg_SetAnimPhase(CBoardParts_GetPart(BoardParts,CSelector_GetPosition(GameSelector).X,CSelector_GetPosition(GameSelector).Y),1);
+					CPeg_SetAnimPhase(CBoardParts_GetPart(BoardParts, CSelector_GetPosition(GameSelector).X, CSelector_GetPosition(GameSelector).Y), 1);
 					CSelector_Select(GameSelector);
 				}
 
 			}
 		}
+	}
 }
 
 void TitleScreenInit()
