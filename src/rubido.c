@@ -115,6 +115,16 @@ void MenuItemCallback(void* userdata)
 	{
 		GameState = GSTitleScreenInit;
 	}
+
+	if (userdata == &menuItem2)
+	{
+		setMusicOn(!isMusicOn());
+	}
+
+	if (userdata == &menuItem3)
+	{
+		setSoundOn(!isSoundOn());
+	}
 }
 
 void DestroyMenuItems()
@@ -145,6 +155,30 @@ void CreateGameMenuItems()
 	if (menuItem1 == NULL)
 	{
 		menuItem1 = pd->system->addMenuItem("Title Screen", MenuItemCallback, &menuItem1);
+	}
+
+	if (menuItem2 == NULL)
+	{
+		menuItem2 = pd->system->addCheckmarkMenuItem("Music", isMusicOn(), MenuItemCallback, &menuItem2);
+	}
+
+	if (menuItem3 == NULL)
+	{
+		menuItem3 = pd->system->addCheckmarkMenuItem("Sound", isSoundOn(), MenuItemCallback, &menuItem3);
+	}
+}
+
+void CreateTitleScreenMenuItems()
+{
+	DestroyMenuItems();
+	if (menuItem2 == NULL)
+	{
+		menuItem2 = pd->system->addCheckmarkMenuItem("Music", isMusicOn(), MenuItemCallback, &menuItem2);
+	}
+
+	if (menuItem3 == NULL)
+	{
+		menuItem3 = pd->system->addCheckmarkMenuItem("Sound", isSoundOn(), MenuItemCallback, &menuItem3);
 	}
 }
 
@@ -399,7 +433,7 @@ void Game()
 void TitleScreenInit()
 {
 	pd->graphics->setBackgroundColor(kColorWhite);
-	DestroyMenuItems();
+	CreateTitleScreenMenuItems();
 	SelectMusic(musTitle);
 }
 
