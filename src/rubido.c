@@ -294,8 +294,6 @@ void Game()
 		if (PrintFormShown)
 		{
 			GameState = GSTitleScreenInit;
-			// stop the music
-			stopMusic();
 			PrintFormShown = false;
 		}
 		else
@@ -358,7 +356,9 @@ void Game()
 
 void TitleScreenInit()
 {
+	
 	// if a music hasn't started start the music in an endless loop (-1 as last parameter)
+	pd->graphics->setBackgroundColor(kColorWhite);
 	SelectMusic(musTitle);
 }
 
