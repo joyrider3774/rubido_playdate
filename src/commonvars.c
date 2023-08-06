@@ -11,8 +11,7 @@ int Difficulty = VeryEasy;
 CBoardParts *BoardParts; // boardparts instance that will hold all the boardparts
 int GameState = GSTitleScreenInit; // the game state
 LCDFont *Ash;
-LCDBitmap *Screen; // the screen and buffer surface, buffer is used since hardware drawing will be used
-int Moves=0,Volume = 128;
+int Moves = 0;
 int BestPegsLeft[4]; // array that holds the best amount of pegs left for each difficulty
 
 //game
@@ -24,11 +23,11 @@ CMainMenu* Menu;
 
 //main
 PDButtons prevButtons, currButtons;
-int showFps;
+int showFps = false;
 unsigned int prevLogTime;
 unsigned int FrameTime, Frames;
 float CurrentMs;
-bool BatteryMonitoring;
+bool BatteryMonitoring = false;
 PlaydateAPI* pd;
 PDMenuItem* menuItem1, *menuItem2, *menuItem3;
 

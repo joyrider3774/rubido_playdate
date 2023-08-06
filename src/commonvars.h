@@ -53,8 +53,7 @@ extern int Difficulty;
 extern CBoardParts *BoardParts; // boardparts instance that will hold all the boardparts
 extern int GameState; // the game state
 extern LCDFont *Ash;
-extern LCDBitmap *Screen; // the screen and buffer surface, buffer is used since hardware drawing will be used
-extern int Moves,Volume;
+extern int Moves;
 extern int BestPegsLeft[4]; // array that holds the best amount of pegs left for each difficulty
 
 //game
