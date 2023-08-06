@@ -167,10 +167,10 @@ int PegsLeft()
 void PrintForm(char *msg)
 {
 	PrintFormShown = true;
-	pd->graphics->fillRect(16,80,221-16,160-80,kColorWhite);
-	pd->graphics->drawRect(16,80,221-16,160-80,kColorBlack);
-	pd->graphics->drawRect(17,81,220-81,159-80,kColorBlack);
-	pd->graphics->drawText(msg,strlen(msg),kASCIIEncoding,21,85);
+	pd->graphics->fillRect(3,75,231,160-55,kColorWhite);
+	pd->graphics->drawRect(3,75,231,160-55,kColorBlack);
+	pd->graphics->drawRect(5,77,231-4,160-55-4,kColorBlack);
+	pd->graphics->drawText(msg,strlen(msg),kASCIIEncoding,9,85);
 }
 
 // this will ceate the initial board state, io a cross of pegs, with the middle on being empty (=animphase 6)
@@ -258,11 +258,11 @@ void Game()
 		// if it's the winning game play the winning sound and show the form with the winning message
 		if (IsWinningGame())
 		{
-			PrintForm("Congratulations you have solved\nthe puzzle! Try a new difficulty!\n\nPress (A) to continue");
+			PrintForm("Congrats you have solved the\npuzzle! Try a new difficulty!\n\nPress (A) to continue");
 		}
 		else // show the loser messager, play loser sound
 		{
-			PrintForm("You could'nt solve the puzzle!\nDon't give up, try it again!\n\nPress (A) to continue");
+			PrintForm("You couldn't solve the puzzle!\nDon't give up, try it again!\n\nPress (A) to continue");
 		}
 	}
 
