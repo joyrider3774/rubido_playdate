@@ -1,4 +1,6 @@
 # Rubido Playdate Version
+![DownloadCountTotal](https://img.shields.io/github/downloads/joyrider3774/rubido_playdate/total?label=total%20downloads&style=plastic) ![DownloadCountLatest](https://img.shields.io/github/downloads/joyrider3774/rubido_playdate/latest/total?style=plastic) ![LatestVersion](https://img.shields.io/github/v/tag/joyrider3774/rubido_playdate?label=Latest%20version&style=plastic) ![License](https://img.shields.io/github/license/joyrider3774/rubido_playdate?style=plastic)
+
 Rubido is a little chinese checkers or solitaire game with four difficulties.
 
 ## Playdate Game Features:
