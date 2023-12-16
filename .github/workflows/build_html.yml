@@ -42,7 +42,7 @@ jobs:
       - name: Build Game        
         run: |
           source ./emsdk/emsdk_env.sh
-          emmake make EMSCRIPTEN_BUILD=1 "SRC_C_DIR=src/srcgame src/srcgame/gameobjects src/srcgame/gamestates"
+          emmake make EMSCRIPTEN_BUILD=1 EMSCRIPTEN_MEMORY_SIZE=756870912 "SRC_C_DIR=src/srcgame src/srcgame/gameobjects src/srcgame/gamestates"
 
       - name: Store build
         uses: actions/upload-artifact@v3
