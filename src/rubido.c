@@ -133,15 +133,22 @@ void UnLoadGraphics()
 
 	if (IMGCredits)
 	{
-		pd->graphics->freeBitmap(IMGVeryHardInfo);
+		pd->graphics->freeBitmap(IMGCredits);
 	}
 
 }
 
+void resetGlobals()
+{
+	PrintFormShown = false;
+	Difficulty = VeryEasy;
+	Moves = 0;
+	GameState = GSTitleScreenInit;
+}
 
 void setupGame()
 {
-	GameState = GSTitleScreenInit;
+	resetGlobals();
 	initSound();
 	initMusic();
 	LoadFonts();
@@ -229,6 +236,17 @@ void CreateTitleScreenMenuItems()
 	}
 }
 
+void terminateGame()
+{
+	CBoardParts_Destroy(BoardParts);
+	CMainMenu_Destroy(Menu);
+	CSelector_Destroy(GameSelector);
+	UnLoadGraphics();
+	deInitSound();
+	deInitMusic();
+	DestroyMenuItems();
+	SaveSettings();
+}
 
 // procedure that calculates how many moves are possible in the current board state
 // we can simply do this by checking all parts and see if they can move to all directions
@@ -351,6 +369,8 @@ void Game()
 		GameInit();
 		GameState -= GSInitDiff;
 	}
+	pd->graphics->clear(kColorBlack);
+	pd->graphics->setBackgroundColor(kColorBlack);
 	pd->graphics->drawBitmap(IMGBackground, 0, 0, kBitmapUnflipped);
 	char* Msg;
 	// Write some info to the screen
@@ -510,6 +530,8 @@ void TitleScreen()
 				break;
 		}
 	}
+	pd->graphics->clear(kColorWhite);
+	pd->graphics->setBackgroundColor(kColorWhite);
 	CMainMenu_Draw(Menu);
 }
 
@@ -572,6 +594,8 @@ void DifficultySelect()
 						Difficulty = VeryEasy;
 	}
 	
+	pd->graphics->clear(kColorBlack);
+	pd->graphics->setBackgroundColor(kColorBlack);
 	// decide what we draw to the buffer based on the difficuly
 	int w;
 	switch(Difficulty)
@@ -613,7 +637,8 @@ void Credits()
 		CreditsInit();
 		GameState -= GSInitDiff;
 	}
-
+	pd->graphics->clear(kColorWhite);
+	pd->graphics->setBackgroundColor(kColorWhite);
 	if (((currButtons & kButtonA) && ! (prevButtons & kButtonA)) || 
 		((currButtons & kButtonB) && ! (prevButtons & kButtonB)))
 			GameState = GSTitleScreenInit;
