@@ -52,7 +52,7 @@ jobs:
       - name: Build Game
         shell: msys2 {0}
         run: |
-          make "SRC_C_DIR=src/srcgame src/srcgame/gameobjects src/srcgame/gamestates" WINDOWSCALE=2 SCREENRESX=360 SCREENRESY=240
+          make "SRC_C_DIR=src/srcgame src/srcgame/gameobjects src/srcgame/gamestates" WINDOWSCALE=2
 
       - name: Copy dll libraries
         shell: msys2 {0}
