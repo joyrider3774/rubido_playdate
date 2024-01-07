@@ -30,6 +30,9 @@ Also depending on the difficulty you had chosen you can either jump horizontally
 - Jump over Pegs vertically and horizontally only
 - Last Peg must end on the middle board
 
+## Play version with colored graphics
+The windows, mac, (self build) linux and html (web assembly) versions can switch out the default playdate graphics with colored graphics if you press the F3 button on the keyboard or the X Button on your (xbox) gamepad. 
+The game will restart with the next source folder and remember which source folder you are using the next time you start the game.
 
 ## Controls 
 | Button | Action |
@@ -46,6 +49,7 @@ Also depending on the difficulty you had chosen you can either jump horizontally
 | X | Confirm in menu and difficulty selector. During gameplay activate the peg where the peg selector is. If there was a peg already selected it will deselect it |
 | C | During gameplay deselect the currently selected peg |
 | F | Switch between fullscreen & windowed mode |
+| F3 | Switch Source Folders (switch between playdate and colored graphics) |
 | F4 | Quit game |
 
 ## Controls Windows (Gamepad)
@@ -54,6 +58,7 @@ Also depending on the difficulty you had chosen you can either jump horizontally
 | dpad & joystick | Select menu's or difficulties. During gameplay move the peg selector around. |
 | A Button | Confirm in menu and difficulty selector. During gameplay activate the peg where the peg selector is. If there was a peg already selected it will deselect it |
 | B Button | During gameplay deselect the currently selected peg |
+| X Button | Switch Source Folders (switch between playdate and colored graphics) |
 
 ## Credits
 
