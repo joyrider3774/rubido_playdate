@@ -47,7 +47,7 @@ modules:
       - echo "./game -f \"\$@\"" >> "./rubido_playdate"
       - chmod +x "./rubido_playdate"
       - echo "Build Game"
-      - make "SRC_C_DIR=src/srcgame src/srcgame/gameobjects src/srcgame/gamestates" "LDFLAGS_EXTRA=`pkg-config --libs SDL2_gfx`" WINDOWSCALE=2 SCREENRESX=400 SCREENRESY=240
+      - make "SRC_C_DIR=src/srcgame src/srcgame/gameobjects src/srcgame/gamestates" "CFLAGS_EXTRA=`pkg-config --cflags SDL2_gfx`" "LDFLAGS_EXTRA=`pkg-config --libs SDL2_gfx`" WINDOWSCALE=2 SCREENRESX=400 SCREENRESY=240
       - mv Source /app/game
       - mkdir -p /app/bin
       - mv ./rubido_playdate /app/bin
