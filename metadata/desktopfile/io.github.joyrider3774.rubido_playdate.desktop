@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+
+Name=Rubido
+Comment=Rubido is a little chinese checkers or solitaire game with four difficulties.
+Categories=Game;BoardGame;
+
+Icon=io.github.joyrider3774.rubido_playdate
+Exec=rubido_playdate
+Terminal=false

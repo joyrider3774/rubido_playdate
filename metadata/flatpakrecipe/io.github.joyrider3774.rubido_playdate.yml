@@ -1,0 +1,66 @@
+app-id: io.github.joyrider3774.rubido_playdate
+runtime: org.freedesktop.Platform
+runtime-version: "23.08"
+sdk: org.freedesktop.Sdk
+command: rubido_playdate
+
+finish-args:
+  - --device=all # needed for gamepads
+  - --share=ipc  # needed for X11
+  - --socket=x11
+  - --socket=pulseaudio
+  - --filesystem=home:rw
+  
+cleanup:
+  - "/include"
+  - "*.a"
+  - "/lib/pkgconfig"
+  
+modules:
+  - name: SDL2_gfx
+    config-opts: 
+      - --disable-static
+      - --disable-mmx
+    build-options:      
+      arch:
+        i386:
+          config-opts:
+            - --enable-mmx
+        x86_64:
+          config-opts:
+            - --enable-mmx
+    sources:
+      - type: archive
+        url: https://downloads.sourceforge.net/project/sdl2gfx/SDL2_gfx-1.0.4.tar.gz
+        sha256: 63e0e01addedc9df2f85b93a248f06e8a04affa014a835c2ea34bfe34e576262
+  - name: Game
+    buildsystem: simple
+    build-commands:
+      - echo "Moving things to correct folders"
+      - rm -rf ./pd_api/src/srcgame
+      - mv ./game/src ./pd_api/src/srcgame
+      - cp -Rf ./game/Source/. ./pd_api/Source
+      - cp -Rf ./pd_api/. ./
+      - echo "Creating rubido_playdate launcher"
+      - echo "#!/bin/bash" > "./rubido_playdate"
+      - echo "cd /app/game" >> "./rubido_playdate"
+      - echo "./game -f \"\$@\"" >> "./rubido_playdate"
+      - chmod +x "./rubido_playdate"
+      - echo "Build Game"
+      - make "SRC_C_DIR=src/srcgame src/srcgame/gameobjects src/srcgame/gamestates" "LDFLAGS_EXTRA=`pkg-config --libs SDL2_gfx`" WINDOWSCALE=2 SCREENRESX=400 SCREENRESY=240
+      - mv Source /app/game
+      - mkdir -p /app/bin
+      - mv ./rubido_playdate /app/bin
+      - install -D game/metadata/appstream/io.github.joyrider3774.rubido_playdate.metainfo.xml /app/share/metainfo/io.github.joyrider3774.rubido_playdate.metainfo.xml
+      - install -D game/metadata/desktopfile/io.github.joyrider3774.rubido_playdate.desktop /app/share/applications/io.github.joyrider3774.rubido_playdate.desktop
+      - install -D game/metadata/icons/64x64/io.github.joyrider3774.rubido_playdate.png /app/share/icons/hicolor/64x64/apps/io.github.joyrider3774.rubido_playdate.png
+      - install -D game/metadata/icons/128x128/io.github.joyrider3774.rubido_playdate.png /app/share/icons/hicolor/128x128/apps/io.github.joyrider3774.rubido_playdate.png
+    sources:
+      - type: git
+        branch: main
+        url: https://github.com/joyrider3774/rubido_playdate
+        dest: game
+      - type: git
+        branch: main
+        url: https://github.com/joyrider3774/Playdate_Api_SDL2
+        dest: pd_api

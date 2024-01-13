@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.joyrider3774.rubido_playdate</id>
+  
+  <name>Rubido</name>
+  <summary>Rubido is a little chinese checkers or solitaire game with four difficulties.</summary>
+  
+  <metadata_license>MIT</metadata_license>
+  <project_license>MIT</project_license>
+  
+  <supports>
+    <control>pointing</control>
+    <control>keyboard</control>
+    <control>gamepad</control>
+  </supports>
+  
+  <description>
+    <p>
+      Rubido is a little chinese checkers or solitaire game with four difficulties. It saves best results achieved of each difficulty
+    </p>
+    <p>
+      The aim of the game in chinese checkers is to select a (white) peg on the board and jump over another (white) peg to land on an empty (black) spot. When doing this the peg you jumped over will be removed from the board. You need to play the game in such a way that only one peg remains on the board at the end. Depending on the difficulty you had chosen this can be either (only) in the middle of the board or anywhere on the board. Also depending on the difficulty you had chosen you can either jump horizontally and veristically over pegs or diagonally as well.
+    </p>
+  </description>
+  
+  <launchable type="desktop-id">io.github.joyrider3774.rubido_playdate.desktop</launchable>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/joyrider3774/rubido_playdate/main/metadata/screenshots/Rubido-screenshot6.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/joyrider3774/rubido_playdate/main/metadata/screenshots/Rubido-screenshot4.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/joyrider3774/rubido_playdate/main/metadata/screenshots/Rubido-screenshot2.png</image>
+    </screenshot>
+  </screenshots>
+</component>
