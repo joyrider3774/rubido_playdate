@@ -34,7 +34,8 @@ Also depending on the difficulty you had chosen you can either jump horizontally
 The windows, mac, (self build) linux and html (web assembly) versions can switch out the default playdate graphics with colored graphics if you press the F3 button on the keyboard or the X Button on your (xbox) gamepad. 
 The game will restart with the next source folder and remember which source folder you are using the next time you start the game.
 
-## Controls 
+## Controls
+
 | Button | Action |
 | ------ | ------ |
 | Dpad | Select menu's or difficulties. During gameplay move the peg selector around. |
@@ -43,6 +44,7 @@ The game will restart with the next source folder and remember which source fold
 | Menu button | Enable / Disable music and sound, return to titlescreen |
 
 ## Controls Windows (keyboard)
+
 | Key | Action |
 | ------ | ------ |
 | Arrow keys | Select menu's or difficulties. During gameplay move the peg selector around. |
@@ -53,6 +55,7 @@ The game will restart with the next source folder and remember which source fold
 | F4 | Quit game |
 
 ## Controls Windows (Gamepad)
+
 | Button | Action |
 | ------ | ------ |
 | dpad & joystick | Select menu's or difficulties. During gameplay move the peg selector around. |
