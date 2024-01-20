@@ -1,0 +1,8 @@
+{
+"package":"io.github.joyrider3774.rubido",
+"label":"Rubido",
+"icon":"icon.png",
+"iconsel":"icon.png",
+"launch":"launch.sh",
+"description":"Rubido Playdate Created by Joyrider3774"
+}
