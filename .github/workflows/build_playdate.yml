@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         include:
-          - { pdx: Rubido.pdx, env: playdate }
+          - {artiface_name: Rubido, pdx: Rubido_DEVICE.pdx, output-pdx: Rubido.pdx, env: playdate }
           
     runs-on: ubuntu-latest       
     steps:
@@ -24,7 +24,7 @@ jobs:
    
       # ==== Build Steps ====
       - name: Check out Sources
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
     
       - name: Grab Playdate SDK
         uses: wei/wget@v1
@@ -53,11 +53,11 @@ jobs:
       - name: Prepare Artifact directory
         run: |
           mkdir output
-          mv ${{matrix.pdx}} output/
+          mv ${{matrix.pdx}} output/${{matrix.output-pdx}}
       
       - name: Store build
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v7
         with:
-          name: Rubido ${{matrix.env}}
+          name: ${{matrix.artiface_name}} ${{matrix.env}}
           path: output
 
